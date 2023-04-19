@@ -1,7 +1,7 @@
 import './Menu.less'
 
 // Kullanacağımız veri bu, üzerinde çalışın ama henüz hiçbir şeyi değiştirmeyin.
-let menuElemanlari = [
+const menuElemanlari = [
   'Gündem',
   'Dünya',
   "Ekonomi",
@@ -19,8 +19,38 @@ let menuElemanlari = [
     </ul>
   </div>
 
-  'menuYapici' fonksiyonu tek argümanı olarak bir menü elemanları dizisini alır (birinci parametre).
+  'menuYapici' fonksiyonu tek argümanı olarak bir menü elemanları dizisini alır (birinci parametre).*/
 
+  function menuYapici(menuElemanlari) {
+    const menuDiv = document.createElement("div");
+    menuDiv.className = "menu";
+  
+    const menuListesi = document.createElement("ul");
+  
+    menuElemanlari.forEach(function (_menuElemalari) {
+      const menuElemani = document.createElement("li");
+      menuElemani.textContent = menuElemanlari;
+
+      menuListesi.appendChild(menuElemani);
+    });
+  
+    menuDiv.appendChild(menuListesi);
+  
+    const menuButton = document.querySelector(".menu-button");
+  
+    menuButton.addEventListener("click", () => {
+      menuButton.classList.toggle("menu--open");
+    });
+  
+    return menuDiv;
+  }
+  const header = document.querySelector("head");
+const menuDiv = menuYapici(menuElemanlari);
+ header.appendChild(menuDiv);
+  
+  
+
+/*
   Adım 2: Fonksiyonun içinde, dizideki her öğe için bir liste <li> öğesi oluşturarak dizi üzerinde yineleme yapın.
   Tüm bu öğeleri <ul>'a ekleyin
 

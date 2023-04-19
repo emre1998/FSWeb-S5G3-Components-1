@@ -87,7 +87,22 @@ const data = [
     ucuncuParagraf: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
-  }
+  },
+{
+  baslik:"2022'de Yapay Zeka Gelişmeleriyle Şaşırtmaya Hazır Olun",
+  tarih:'19 Nisan 2022',
+  ilkParagraf:"Yapay zeka teknolojisi, son yıllarda hızlı bir şekilde gelişerek hayatımızın birçok alanında kullanılmaya başlandı. Ve 2022 yılı, yapay zeka teknolojilerindeki gelişmelerin daha da hız kazanacağı bir yıl olacak gibi görünüyor.Yapay zeka teknolojileri, özellikle sağlık, finans, eğitim, savunma ve otomotiv endüstrilerindeki uygulamaları ile dikkat çekiyor. Bunun yanı sıra, sanayi ve hizmet sektörlerinde de yapay zeka teknolojilerinin kullanımı hızla artıyor.",
+  ikinciParagraf:"2022'de yapay zeka teknolojilerindeki gelişmeler ile birlikte, otonom araçlar, akıllı evler, kişiselleştirilmiş sağlık hizmetleri, finansal analizler ve daha birçok alanın yapay zeka tarafından yönlendirileceği öngörülüyor. Bu gelişmelerin yanı sıra, yapay zeka teknolojilerinin etik ve güvenlik konuları da gündemdeki yerini koruyacak.Yapay zeka teknolojileriyle birlikte gelen bu hızlı değişim, birçok sektörde çalışanların yetkinliklerinde de değişikliklere yol açacak. Bu nedenle, çalışanların, yapay zeka teknolojilerine adapte olmak için eğitim almaları gerekebilir.",
+  ucuncuParagraf:"2022 yılı, yapay zeka teknolojilerindeki gelişmelerle birlikte, hayatımızdaki birçok şeyin değişeceği bir yıl olacak. Bu gelişmelerin, toplumun tüm kesimleri tarafından takip edilmesi ve yönlendirilmesi önem taşıyor."
+},
+{
+baslik:"2022'de Giyilebilir Teknolojiler, Hayatımızı Daha da Kolaylaştıracak",
+tarih:'20 Nisan 2022',
+ilkParagraf:"Giyilebilir teknolojiler, son yıllarda hayatımızda önemli bir yer edindi. 2022 yılında da bu teknolojilerin gelişmeye devam etmesi bekleniyor. Giyilebilir teknolojiler, sağlık, spor, eğlence ve güvenlik gibi birçok alanda kullanılıyor.2022'de giyilebilir teknolojiler, kişiselleştirilmiş sağlık takibi, fitness ve spor takip sistemleri, akıllı saatler, akıllı gözlükler, akıllı bileklikler ve akıllı giyilebilir cihazlar gibi birçok yenilikçi ürünle birlikte geliştirilecek.",
+ikinciParagraf:"Bu teknolojiler, insanların sağlık durumlarını takip edebilmelerine, egzersiz yaparken performanslarını artırmalarına ve günlük hayatta işlerini daha kolay hale getirmelerine yardımcı olacak. Ayrıca, giyilebilir teknolojilerin, özellikle yaşlı nüfusun yaşam kalitesini artırmak için kullanılabileceği de düşünülüyor.Giyilebilir teknolojilerin hızla gelişmesiyle birlikte, bu cihazların veri güvenliği ve gizliliği de önem kazanıyor. Bu nedenle, giyilebilir teknolojilerin geliştirilmesi sırasında, kullanıcıların verilerinin güvende olduğundan emin olmak için uygun önlemler alınması gerekiyor.",
+ucuncuParagraf:"2022, giyilebilir teknolojilerin hayatımızda daha da önemli hale gelmesiyle birlikte, bu teknolojilere yönelik yatırımların ve geliştirmelerin artacağı bir yıl olacak. Giyilebilir teknolojilerin sağladığı avantajlar göz önüne alındığında, bu trendin önümüzdeki yıllarda da devam etmesi bekleniyor."
+}
+
 ];
 
 /*
@@ -102,8 +117,51 @@ const data = [
     {üç ayrı paragraf elementi}
 
     <span class="expandButton">+</span>
-  </div>
+  </div>*/
+  function haberYapici(haber) {
+    const article = document.createElement('div');
+    article.classList.add('article');
+  
+    const title = document.createElement('h2');
+    title.textContent = haber.baslik;
+    article.appendChild(title);
+  
+    const tarih = document.createElement('p');
+  tarih.classList.add('tarih');
+  tarih.textContent = haber.tarih;
+  article.appendChild(tarih);
 
+  const paragraf1 = document.createElement('p');
+  paragraf1.textContent = haber.ilkParagraf;
+  article.appendChild(paragraf1);
+
+  const paragraf2 = document.createElement('p');
+  paragraf2.textContent = haber.ikinciParagraf;
+  article.appendChild(paragraf2);
+
+  const paragraf3 = document.createElement('p');
+  paragraf3.textContent = haber.ucuncuParagraf;
+  article.appendChild(paragraf3);
+  
+   const expandButton = document.createElement('span');
+    expandButton.classList.add('expandButton');
+    expandButton.textContent = '+';
+    article.appendChild(expandButton);
+  
+    expandButton.addEventListener('click', function() {
+      article.classList.toggle('article-open');
+    });
+
+    return article;
+  } 
+  const articles = document.querySelector('.articles');
+
+  data.forEach(function(data) {
+    const haberElement = haberYapici(data);
+    articles.appendChild(haberElement);
+  });
+
+/*
   Adım 2: Hala `haberYapici` içindeyiz, span.expandButton 'a bir click event dinleyici ekleyin.
   Bu dinleyici div.article öğesine 'article-open' class'ını ekleyip/çıkaracak (toogle).
 
